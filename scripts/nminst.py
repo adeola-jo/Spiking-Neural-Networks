@@ -14,8 +14,8 @@ import snntorch.spikeplot as splt
 
 # Import the neuromorphic MNIST Dataset 
 def download_mnist_data(data_dir='dataset/nmnist'):
-    train_ds = spikedata.NMNIST(data_dir, train=True, download=True)
-    test_ds = spikedata.NMNIST(data_dir, train=False, download=True)
+    train_ds = spikedata.NMNIST(data_dir, train=True, download_and_create=True, num_steps=300, dt=1000)
+    test_ds = spikedata.NMNIST(data_dir, train=False, download_and_create=True, num_steps=300, dt=1000)
     return train_ds, test_ds
 
 
