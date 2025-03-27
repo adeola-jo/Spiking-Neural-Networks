@@ -1,8 +1,6 @@
 # Spiking-Neural-Networks
 A repository of spiking neural networks learning material
 
-
-
 ## Several open-source datasets well-suited for SNN projects:
 
 ### Traditional Vision Datasets (need encoding to spikes)
@@ -28,3 +26,11 @@ A repository of spiking neural networks learning material
 ### Neuromorphic Benchmarks
 1. **Heidelberg Spiking Datasets** - Benchmarks specifically for SNNs
 2. **SnnTorch Tutorials Datasets** - Example datasets in the SnnTorch library
+
+
+### Plans and Approaches
+- Start from the neuromorphic MNIST dataset.
+- Then move to the Gesture dataset
+
+-  python -m venv snn  
+- snn\Scripts\activate
