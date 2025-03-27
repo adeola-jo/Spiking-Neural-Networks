@@ -3,7 +3,7 @@ A repository of spiking neural networks learning material
 
 
 
-# Several open-source datasets well-suited for SNN projects:
+## Several open-source datasets well-suited for SNN projects:
 
 ### Traditional Vision Datasets (need encoding to spikes)
 1. **MNIST** - Handwritten digits (beginner-friendly)
