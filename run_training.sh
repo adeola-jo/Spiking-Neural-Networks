@@ -3,7 +3,7 @@
 
 # Basic training with verbose output and visualizations
 echo "Starting training with CNN model..."
-python scripts/train_nmnist.py \
+python src/train.py \
     --model cnn \
     --epochs 20 \
     --batch_size 128 \
@@ -12,7 +12,7 @@ python scripts/train_nmnist.py \
 
 # Training with ResNet model
 echo "Starting training with ResNet model..."
-python train_nmnist.py \
+python src/train.py \
     --model resnet \
     --epochs 30 \
     --batch_size 64 \
@@ -23,7 +23,7 @@ python train_nmnist.py \
 
 # Quick test run with no color (for logging to file)
 echo "Running test-only mode..."
-python train_nmnist.py \
+python src/train.py \
     --model cnn \
     --test_only \
     --no_color \
@@ -31,13 +31,13 @@ python train_nmnist.py \
 
 # Minimal output training (no verbose)
 echo "Running training with minimal output..."
-python train_nmnist.py \
+python src/train.py \
     --model cnn \
     --epochs 10
 
 # Example with custom directories
 echo "Running training with custom directories..."
-python train_nmnist.py \
+python src/train.py \
     --model resnet \
     --data_dir ./custom_data \
     --save_dir ./custom_checkpoints \
