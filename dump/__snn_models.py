@@ -1,6 +1,7 @@
 """
 Models for Spiking Neural Networks using SNNTorch
 """
+import torch
 import torch.nn as nn
 import snntorch as snn
 from snntorch import surrogate
@@ -60,20 +61,23 @@ class SpikingCNN(nn.Module):
         
         Returns:
             spk_out: Output spikes
+            mem_out: Output membrane potential
         """
         # First convolutional block
         cur = self.conv1(x)
-        spk1 = self.lif1(cur)  # Only unpack the spike output
+        test = self.lif1(cur)
+        print(test.shape)
+        spk1, mem1 = self.lif1(cur)
         x = self.pool1(spk1)
         
         # Second convolutional block
         cur = self.conv2(x)
-        spk2 = self.lif2(cur)  # Only unpack the spike output
+        spk2, mem2 = self.lif2(cur)
         x = self.pool2(spk2)
         
         # Third convolutional block
         cur = self.conv3(x)
-        spk3 = self.lif3(cur)  # Only unpack the spike output
+        spk3, mem3 = self.lif3(cur)
         x = self.pool3(spk3)
         
         # Flatten for fully connected
@@ -82,21 +86,22 @@ class SpikingCNN(nn.Module):
         # Fully connected layer
         cur = self.fc(x)
         cur = self.dropout(cur)
-        spk4 = self.lif4(cur)  # Only unpack the spike output
+        spk4, mem4 = self.lif4(cur)
         
         # Readout layer
         cur = self.readout(spk4)
-        spk_out = self.lif_out(cur)  # Only unpack the spike output
+        spk_out, mem_out = self.lif_out(cur)
         
-        return spk_out
-    
+        return spk_out, mem_out
+
     def reset_states(self):
         """Reset all hidden states to initial values"""
-        self.lif1.reset_mem()
-        self.lif2.reset_mem()
-        self.lif3.reset_mem()
-        self.lif4.reset_mem()
-        self.lif_out.reset_mem()
+        self.lif1.reset_()
+        self.lif2.reset_()
+        self.lif3.reset_()
+        self.lif4.reset_()
+        self.lif_out.reset_()
+
 
 class SpikingResNet(nn.Module):
     """
@@ -225,11 +230,11 @@ class SpikingResNet(nn.Module):
     
     def reset_states(self):
         """Reset all hidden states for a new sequence"""
-        self.lif1.reset_mem()
-        self.res1_lif1.reset_mem()
-        self.res1_lif2.reset_mem()
-        self.res2_lif1.reset_mem()
-        self.res2_lif2.reset_mem()
-        self.down_lif.reset_mem()
-        self.fc_lif.reset_mem()
-        self.out_lif.reset_mem()
+        self.lif1.reset_()
+        self.res1_lif1.reset_()
+        self.res1_lif2.reset_()
+        self.res2_lif1.reset_()
+        self.res2_lif2.reset_()
+        self.down_lif.reset_()
+        self.fc_lif.reset_()
+        self.out_lif.reset_()

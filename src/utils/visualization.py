@@ -2,10 +2,9 @@
 Visualization utilities for SNN models and results
 """
 import os
-import torch
-import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+import snntorch.spikeplot as splt
 
 def plot_results(train_losses, test_losses, train_accs, test_accs, save_dir):
     """
@@ -43,6 +42,41 @@ def plot_results(train_losses, test_losses, train_accs, test_accs, save_dir):
     plt.tight_layout()
     plt.savefig(os.path.join(save_dir, 'training_results.png'))
     plt.close()
+
+def plot_snn_spikes(spikes, title, num_steps):
+    """
+    Plot the spike activity of a Spiking Neural Network.
+    
+    Args:
+        spikes: Spike tensor to visualize
+        title: Plot title
+        num_steps: Number of time steps to visualize
+    """
+    # Generate Plot
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    # Reshape the spikes if needed to ensure it's in format [timesteps, neurons]
+    if len(spikes.shape) > 2:
+        spikes_reshaped = spikes.reshape(num_steps, -1)
+    else:
+        spikes_reshaped = spikes[:num_steps]
+    
+    # Plot spikes
+    splt.raster(spikes_reshaped, ax, s=0.05, c="black")
+    
+    # Add labels and title
+    ax.set_xlabel("Time Steps")
+    ax.set_ylabel("Neuron Index")
+    ax.set_title(title)
+    
+    plt.tight_layout()
+    plt.show()
+    # Save the figure
+    fig.savefig(os.path.join('logs', f'{title}.png'))
+    plt.close(fig)
+    
+    return fig
+
 
 def save_results(results, save_dir):
     """

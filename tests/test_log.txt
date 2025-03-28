@@ -1,0 +1,31 @@
+=== SNN Training Log - 2025-03-28 12:46:37 ===
+
+
+ℹ️  SNN Training
+================
+
+ℹ️  ⚙️  Configuration
+=====================
+Configuration: {'batch_size': 128, 'time_steps': 25, 'data_dir': './datasets', 'model': 'resnet', 'beta': 0.5, 'threshold': 1.0, 'alpha': 0.9, 'dropout': 0.2, 'epochs': 10, 'lr': 0.001, 'weight_decay': 0.0001, 'loss': 'ce', 'optimizer': 'adam', 'scheduler': True, 'save_dir': './checkpoints', 'log_dir': './logs', 'resume': False, 'device': 'cuda', 'test_only': False, 'visualize': True}
+
+ℹ️  🧠  Model Summary: DummyModel
+================================
+Model Summary: DummyModel
+
+ℹ️  🧠  Model Summary: MockTorchModel
+====================================
+Model Summary: MockTorchModel, Parameters: 25,578
+
+📊  Epoch 1/10 [██░░░░░░░░░░░░░░░░░░] 10%
+Training - Time: 45.23s, Loss: 0.7823, Accuracy: 68.45%
+Testing - Loss: 0.6543, Accuracy: 72.34%
+Epoch 1 Summary - Train: 0.7823/68.45%, Test: 0.6543/72.34%, Best: 72.34%
+💾  Saved best model to ./checkpoints/model_epoch1.pth
+
+ℹ️  ✅  Training Complete
+========================
+Training Complete - Total time: 01:00:00, Best accuracy: 85.67%
+
+ℹ️  📈  Results Summary
+======================
+Results Summary - Best epoch: 3, Best accuracy: 82.34%
