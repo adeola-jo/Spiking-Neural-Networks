@@ -1,4 +1,4 @@
-# Spiking Neural Networks for Neuromorphic Data
+# Spiking Neural Networks for Neuromorphic MNIST Data
 
 This project implements Spiking Neural Networks (SNNs) for neuromorphic datasets using the SNNTorch library. The code provides a complete pipeline for training, testing, and visualizing spiking neural networks.
 
